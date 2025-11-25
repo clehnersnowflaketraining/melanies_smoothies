@@ -5,15 +5,12 @@ import requests
 smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/watermelon")
 # st.text(smoothiefroot_response.json())
 
-
-
 # Write directly to the app
 st.title(f"Customize Your Smoothie: {st.__version__}")
 st.write(
   """Choose the fruits you want in your custom smoothie!
   """
 )
-
 
 name_on_order = st.text_input('Name on Smoothie:')
 st.write('The name on your Smoothie will be:', name_on_order)
@@ -23,7 +20,7 @@ st.write('The name on your Smoothie will be:', name_on_order)
 cnx = st.connection("snowflake")
 session = cnx.session()
 
-my_dataframe = session.table("smoothies.public.fruit_options").select(col('FRUIT_NAME'),col('SEARCH_ON'))
+my_dataframe = session.table("smoothies.public.fruit_options").select(col('FRUIT_NAME'),col('Search_On'))
 st.dataframe(data=myh_dataframe, use_container_width=True)
 st.Stop()
 
